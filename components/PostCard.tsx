@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@components/ui/button";
 import { DotFilledIcon } from "@radix-ui/react-icons";
+import { memo } from "react";
 
-export default function PostCard({ post }: { post: Post }) {
+function PostCard({ post }: { post: Post }) {
   return (
     <div className="border rounded-md p-4">
       <Button variant="link" asChild>
@@ -36,3 +37,7 @@ export default function PostCard({ post }: { post: Post }) {
     </div>
   );
 }
+
+export default memo(PostCard, (prev, next) => {
+  return prev.post.id === next.post.id;
+});
