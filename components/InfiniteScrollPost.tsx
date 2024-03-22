@@ -4,13 +4,14 @@ import PostCard from "./PostCard";
 import { fetchPosts } from "@/actions/fetchPosts";
 import { useInView } from "react-intersection-observer";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { Post } from "@/types/Post";
 
 const InfiniteScrollPost = ({
   initialPosts,
   token,
   endofPosts,
 }: {
-  initialPosts: any;
+  initialPosts: Post[];
   token: string | undefined;
   endofPosts: boolean;
 }) => {
@@ -22,7 +23,6 @@ const InfiniteScrollPost = ({
   const memorizedCallback = useCallback(
     async function fetchMore() {
       const next = page + 1;
-      // const data = await getPosts({ page: next, token: token || "" });
       const data = await fetchPosts({ page: next, token: token || "" });
       if (data?.length) {
         if (data.length < 10) {
