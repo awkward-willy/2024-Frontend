@@ -1,8 +1,7 @@
 import { fetchPosts } from "@/actions/fetchPosts";
 import Navbar from "@/components/Navbar";
-import PostCard from "@/components/PostCard";
+import PostCardSkeleton from "@/components/PostCardSkeleton";
 import PostList from "@/components/PostList";
-import { Post } from "@/types/Post";
 import { auth } from "@lib/auth";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -16,12 +15,9 @@ const AuthPage = async () => {
       <>
         <Navbar />
         <p>Auth Page</p>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<PostCardSkeleton />}>
           <PostList />
         </Suspense>
-        {data.map((data: Post) => {
-          return <PostCard key={data.id} post={data} />;
-        })}
       </>
     );
   }
