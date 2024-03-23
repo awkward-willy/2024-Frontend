@@ -17,6 +17,9 @@ export default async function Navbar() {
           className="rounded-full"
         />
         <Button variant="link" asChild>
+          <Link href="/auth/post/create">Create</Link>
+        </Button>
+        <Button variant="link" asChild>
           <Link href="/api/auth/signout">Signout</Link>
         </Button>
       </nav>
