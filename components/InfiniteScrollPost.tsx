@@ -32,7 +32,7 @@ const InfiniteScrollPost = ({
             setEnd(true);
           }
           setPage(next);
-          setPosts((prev: any) => {
+          setPosts((prev: Post[]) => {
             return [...(prev?.length ? prev : []), ...data];
           });
         } else {
@@ -47,7 +47,7 @@ const InfiniteScrollPost = ({
   return (
     <>
       <div className="flex flex-col gap-4">
-        {posts.map((data: any) => {
+        {posts.map((data: Post) => {
           return <PostCard key={data.id} post={data} userName={userName} />;
         })}
       </div>
