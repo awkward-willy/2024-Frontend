@@ -10,46 +10,45 @@ const InfiniteScrollPost = ({
   initialPosts,
   token,
   endofPosts,
+  userName,
 }: {
   initialPosts: Post[];
   token: string | undefined;
   endofPosts: boolean;
+  userName: string;
 }) => {
   const [posts, setPosts] = useState(initialPosts);
   const [page, setPage] = useState(1);
   const [end, setEnd] = useState(endofPosts);
   const [ref, inView] = useInView();
 
-  const memorizedCallback = useCallback(
-    async function fetchMore() {
-      const next = page + 1;
-      const data = await fetchPosts({ page: next, token: token || "" });
-      if (data?.length) {
-        if (data.length < 10) {
+  useEffect(() => {
+    if (inView && !end) {
+      const fetchMore = async () => {
+        const next = page + 1;
+        const data = await fetchPosts({ page: next, token: token || "" });
+        if (data?.length) {
+          if (data.length < 10) {
+            setEnd(true);
+          }
+          setPage(next);
+          setPosts((prev: any) => {
+            return [...(prev?.length ? prev : []), ...data];
+          });
+        } else {
           setEnd(true);
         }
-        setPage(next);
-        setPosts((prev: any) => {
-          return [...(prev?.length ? prev : []), ...data];
-        });
-      } else {
-        setEnd(true);
-      }
-    },
-    [page, token]
-  );
-
-  useEffect(() => {
-    if (inView) {
-      memorizedCallback();
+      };
+      fetchMore();
     }
-  }, [inView, memorizedCallback]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView]);
 
   return (
     <>
       <div className="flex flex-col gap-4">
         {posts.map((data: any) => {
-          return <PostCard key={data.id} post={data} />;
+          return <PostCard key={data.id} post={data} userName={userName} />;
         })}
       </div>
       {end ? (

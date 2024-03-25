@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Comment } from "@/types/Comment";
@@ -25,39 +25,36 @@ const InfiniteScrollComment = ({
   const [ref, inView] = useInView();
 
   const removeComment = (id: string) => {
-    setComments((prev: any) => {
+    setComments((prev: Comment[]) => {
       return prev.filter((comment: Comment) => comment.id !== id);
     });
   };
 
-  const memorizedCallback = useCallback(
-    async function fetchMore() {
-      const next = page + 1;
-      const data = await fetchComments({
-        page: next,
-        token: token || "",
-        number: postNumber,
-      });
-      if (data?.length) {
-        if (data.length < 10) {
+  useEffect(() => {
+    if (inView && !end) {
+      const fetchMore = async () => {
+        const next = page + 1;
+        const data = await fetchComments({
+          page: next,
+          token: token || "",
+          number: postNumber,
+        });
+        if (data?.length) {
+          if (data.length < 10) {
+            setEnd(true);
+          }
+          setPage(next);
+          setComments((prev: Comment[]) => {
+            return [...(prev?.length ? prev : []), ...data];
+          });
+        } else {
           setEnd(true);
         }
-        setPage(next);
-        setComments((prev: any) => {
-          return [...(prev?.length ? prev : []), ...data];
-        });
-      } else {
-        setEnd(true);
-      }
-    },
-    [page, token, postNumber]
-  );
-
-  useEffect(() => {
-    if (inView) {
-      memorizedCallback();
+      };
+      fetchMore();
     }
-  }, [inView, memorizedCallback]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView]);
 
   return (
     <>
