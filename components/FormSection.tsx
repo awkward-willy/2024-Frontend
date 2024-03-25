@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 import { useEffect } from "react";
+import { updatePost } from "@/actions/updatePost";
 
 const formSchema = z.object({
   title: z
@@ -31,6 +32,8 @@ interface FormSectionProps {
   setBody: (body: string) => void;
   title: string;
   body: string;
+  type: "create" | "edit";
+  issueNum?: number;
 }
 
 export default function FormSection({
@@ -38,6 +41,8 @@ export default function FormSection({
   setBody,
   title,
   body,
+  type,
+  issueNum,
 }: FormSectionProps) {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -50,20 +55,38 @@ export default function FormSection({
   });
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append("title", form.getValues("title"));
-    formData.append("body", form.getValues("body"));
-    const res = await createPosts(formData);
-    if (res.success) {
-      router.push("/auth");
-      toast("成功建立文章", {
-        icon: <CheckCircledIcon color="green" />,
-      });
+    if (type === "create") {
+      const formData = new FormData();
+      formData.append("title", form.getValues("title"));
+      formData.append("body", form.getValues("body"));
+      const res = await createPosts(formData);
+      if (res.success) {
+        router.push("/auth");
+        toast("成功建立文章", {
+          icon: <CheckCircledIcon color="green" />,
+        });
+      } else {
+        toast("建立文章失敗", {
+          description: "錯誤碼：" + res.status,
+          icon: <CrossCircledIcon color="red" />,
+        });
+      }
     } else {
-      toast("建立文章失敗", {
-        description: "錯誤碼：" + res.status,
-        icon: <CrossCircledIcon color="red" />,
-      });
+      const formData = new FormData();
+      formData.append("title", form.getValues("title"));
+      formData.append("body", form.getValues("body"));
+      const res = await updatePost(formData, issueNum as number);
+      if (res === 200) {
+        router.push("/auth");
+        toast("成功編輯文章", {
+          icon: <CheckCircledIcon color="green" />,
+        });
+      } else {
+        toast("編輯文章失敗", {
+          description: "錯誤碼：" + res,
+          icon: <CrossCircledIcon color="red" />,
+        });
+      }
     }
   };
 
@@ -124,7 +147,7 @@ export default function FormSection({
           }}
         />
         <Button type="submit" className="w-full">
-          Create
+          {type === "create" ? "Create" : "Edit"}
         </Button>
       </form>
     </Form>
