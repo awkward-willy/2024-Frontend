@@ -27,7 +27,7 @@ const formSchema = z.object({
   body: z.string().trim().min(30, { message: "Body 需至少 30 字" }),
 });
 
-interface FormSectionProps {
+interface PostFormProps {
   setTitle: (title: string) => void;
   setBody: (body: string) => void;
   title: string;
@@ -36,14 +36,14 @@ interface FormSectionProps {
   issueNum?: number;
 }
 
-export default function FormSection({
+export default function PostForm({
   setTitle,
   setBody,
   title,
   body,
   type,
   issueNum,
-}: FormSectionProps) {
+}: PostFormProps) {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

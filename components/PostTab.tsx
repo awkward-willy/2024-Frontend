@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import FormSection from "@/components/FormSection";
+import PostForm from "@/components/PostForm";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -26,7 +26,7 @@ export default function PostTab({
         <TabsTrigger value="preview">Preview</TabsTrigger>
       </TabsList>
       <TabsContent value="form">
-        <FormSection
+        <PostForm
           setTitle={setTitle}
           setBody={setBody}
           title={title}
