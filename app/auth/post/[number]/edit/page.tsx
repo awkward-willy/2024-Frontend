@@ -1,5 +1,4 @@
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
-import MarkdownRenderer from "@/components/MarkdownRenderer";
 import PostTab from "@/components/PostTab";
 import { auth } from "@/lib/auth";
 import { Post } from "@/types/Post";
