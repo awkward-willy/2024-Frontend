@@ -12,6 +12,7 @@ const PostList = async () => {
         initialPosts={data}
         token={session?.access_token}
         endofPosts={data.length < 10}
+        userName={session?.user.accountName}
       />
     </>
   );

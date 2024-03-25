@@ -4,10 +4,11 @@ import Link from "next/link";
 import { Button } from "@components/ui/button";
 import { DotFilledIcon } from "@radix-ui/react-icons";
 import { memo } from "react";
+import DeletePostButton from "./DeletePostButton";
 
-function PostCard({ post }: { post: Post }) {
+function PostCard({ post, userName }: { post: Post; userName?: string }) {
   return (
-    <div className="border rounded-md p-4">
+    <div className="border rounded-md p-4 flex flex-col items-start">
       <Button variant="link" asChild>
         <Link href={post.user.html_url} target="_blank">
           <Image
@@ -20,8 +21,11 @@ function PostCard({ post }: { post: Post }) {
           {post.user.login}
         </Link>
       </Button>
-      <p>{post.title}</p>
-      <p>{post.body}</p>
+      <Button variant="link" asChild>
+        <Link href={`/auth/post/${post.number}`} className="text-xl font-bold">
+          {post.title}
+        </Link>
+      </Button>
       <p>{post.created_at}</p>
       {post.labels.map((label: Label) => {
         return (
@@ -34,6 +38,14 @@ function PostCard({ post }: { post: Post }) {
           </div>
         );
       })}
+      {post.user.login === userName && (
+        <>
+          <Button variant="link" asChild>
+            <Link href={`/auth/post/${post.number}/edit`}>Edit</Link>
+          </Button>
+          <DeletePostButton postNumber={post.number.toString()} />
+        </>
+      )}
     </div>
   );
 }
