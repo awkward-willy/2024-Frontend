@@ -25,7 +25,7 @@ export async function fetchPosts(props?: fetchPostsProps) {
   }
 
   const response = await fetch(
-    `https://api.github.com/repos/awkward-willy/test/issues?page=${page}&per_page=${limit}`,
+    `https://api.github.com/repos/awkward-willy/test/issues?page=${page}&per_page=${limit}&state=open`,
     {
       method: "GET",
       headers: header,

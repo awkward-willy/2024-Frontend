@@ -6,6 +6,8 @@ import Link from "next/link";
 import CommentSection from "@/components/CommentSection";
 import { Suspense } from "react";
 
+export const revalidate = 60;
+
 export default async function PostNumberPage({
   params,
 }: {
