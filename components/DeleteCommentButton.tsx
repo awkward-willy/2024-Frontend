@@ -1,8 +1,10 @@
 "use client";
+
+import { toast } from "sonner";
+
 import { deleteComment } from "@/actions/deleteComment";
 import { Button } from "@components/ui/button";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
-import { toast } from "sonner";
 
 interface DeleteCommentButtonProps {
   id: string;

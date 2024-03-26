@@ -1,9 +1,12 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { ReloadIcon } from "@radix-ui/react-icons";
-import { Comment } from "@/types/Comment";
+
 import { fetchComments } from "@/actions/fetchComments";
+import { Comment } from "@/types/Comment";
+import { ReloadIcon } from "@radix-ui/react-icons";
+
 import CommentCard from "./CommentCard";
 
 const InfiniteScrollComment = ({

@@ -1,6 +1,6 @@
 import { fetchPosts } from "@/actions/fetchPosts";
-import { auth } from "@/lib/auth";
 import InfiniteScrollPost from "@/components/Post/InfiniteScrollPost";
+import { auth } from "@/lib/auth";
 
 const PostList = async () => {
   const session = await auth();

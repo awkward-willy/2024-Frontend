@@ -1,10 +1,13 @@
 "use client";
+
 import { useCallback, useEffect, useState } from "react";
-import PostCard from "./PostCard";
-import { fetchPosts } from "@/actions/fetchPosts";
 import { useInView } from "react-intersection-observer";
-import { ReloadIcon } from "@radix-ui/react-icons";
+
+import { fetchPosts } from "@/actions/fetchPosts";
 import { Post } from "@/types/Post";
+import { ReloadIcon } from "@radix-ui/react-icons";
+
+import PostCard from "./PostCard";
 
 const InfiniteScrollPost = ({
   initialPosts,

@@ -1,6 +1,7 @@
 import type { NextAuthConfig } from "next-auth";
-import type { User } from "@/types/User";
 import { AdapterUser } from "next-auth/adapters";
+
+import type { User } from "@/types/User";
 
 export const authConfig = {
   callbacks: {

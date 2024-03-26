@@ -1,9 +1,11 @@
-import { Label, Post } from "@/types/Post";
 import Image from "next/image";
 import Link from "next/link";
+import { memo } from "react";
+
+import { Label, Post } from "@/types/Post";
 import { Button } from "@components/ui/button";
 import { DotFilledIcon } from "@radix-ui/react-icons";
-import { memo } from "react";
+
 import DeletePostButton from "./DeletePostButton";
 
 function PostCard({ post, userName }: { post: Post; userName?: string }) {

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import CommentForm from "./CommentForm";
+
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import CommentForm from "./CommentForm";
 
 export default function CommentTab({
   initBody,

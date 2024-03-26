@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
+
 import { authConfig } from "@lib/auth.config";
-import { PUBLIC_ROUTES, ROOT, AUTH_REDIRECT } from "@lib/routes";
+import { AUTH_REDIRECT, PUBLIC_ROUTES, ROOT } from "@lib/routes";
+
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {

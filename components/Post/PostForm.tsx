@@ -1,7 +1,12 @@
-import { z } from "zod";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { createPosts } from "@/actions/createPost";
+import { updatePost } from "@/actions/updatePost";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,13 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
-import { useEffect } from "react";
-import { updatePost } from "@/actions/updatePost";
 
 const formSchema = z.object({
   title: z

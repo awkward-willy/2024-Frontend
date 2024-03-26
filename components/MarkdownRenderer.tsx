@@ -1,9 +1,9 @@
 import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import rehypeMathjax from "rehype-mathjax";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialOceanic } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import rehypeMathjax from "rehype-mathjax";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 export default function MarkdownRenderer({ body }: { body: string }) {
   return (

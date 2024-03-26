@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { Comment } from "@/types/Comment";
-import DeleteCommentButton from "./DeleteCommentButton";
 import { memo } from "react";
+
+import { Comment } from "@/types/Comment";
+
+import DeleteCommentButton from "./DeleteCommentButton";
 
 function CommentCard({
   comment,

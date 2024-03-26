@@ -1,5 +1,6 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import GitHub from "next-auth/providers/github";
+
 import { authConfig } from "@lib/auth.config";
 
 export const {

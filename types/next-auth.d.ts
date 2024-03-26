@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import type { Adapter } from "next-auth/adapters";
+
 import type { User } from "@types/User";
 
 declare module "next-auth" {

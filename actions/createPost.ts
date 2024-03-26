@@ -1,6 +1,8 @@
 "use server";
-import { auth } from "@lib/auth";
+
 import { revalidatePath } from "next/cache";
+
+import { auth } from "@lib/auth";
 
 export async function createPosts(formData: FormData) {
   const session = await auth();

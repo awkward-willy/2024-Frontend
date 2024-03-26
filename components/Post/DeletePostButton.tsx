@@ -1,9 +1,11 @@
 "use client";
 
-import { deletePost } from "@/actions/deletePost";
-import { Button } from "@components/ui/button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+
+import { deletePost } from "@/actions/deletePost";
+import { Button } from "@components/ui/button";
+
 export default function DeletePostButton({
   postNumber,
 }: {

@@ -1,6 +1,6 @@
 import { fetchComments } from "@/actions/fetchComments";
-import { auth } from "@/lib/auth";
 import InfiniteScrollComment from "@/components/InfiniteScrollComment";
+import { auth } from "@/lib/auth";
 
 export default async function CommentSection({
   postNumber,

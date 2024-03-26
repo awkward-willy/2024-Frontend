@@ -1,7 +1,8 @@
-import { auth } from "@/lib/auth";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
 
 export default async function Navbar() {
   const admin = process.env.ADMIN_NAME;

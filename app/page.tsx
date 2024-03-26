@@ -1,9 +1,10 @@
+import Link from "next/link";
+
 import { fetchPosts } from "@/actions/fetchPosts";
 import Navbar from "@/components/Navbar";
 import PostCard from "@/components/Post/PostCard";
 import { Button } from "@/components/ui/button";
 import { Post } from "@/types/Post";
-import Link from "next/link";
 
 export const dynamic = "force-static";
 

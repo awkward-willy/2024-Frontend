@@ -1,7 +1,8 @@
-import PostTab from "@/components/Post/PostTab";
-import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+
+import PostTab from "@/components/Post/PostTab";
+import { auth } from "@/lib/auth";
 
 export default async function CreatePage() {
   const session = await auth();

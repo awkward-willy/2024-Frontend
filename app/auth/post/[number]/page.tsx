@@ -1,11 +1,12 @@
+import Link from "next/link";
+import { Suspense } from "react";
+
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
+import CommentSection from "@/components/CommentSection";
+import CommentTab from "@/components/CommentTab";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { auth } from "@/lib/auth";
 import { Post } from "@/types/Post";
-import Link from "next/link";
-import CommentSection from "@/components/CommentSection";
-import { Suspense } from "react";
-import CommentTab from "@/components/CommentTab";
 
 export const revalidate = 60;
 
