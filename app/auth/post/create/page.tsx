@@ -1,4 +1,4 @@
-import PostTab from "@/components/PostTab";
+import PostTab from "@/components/Post/PostTab";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";

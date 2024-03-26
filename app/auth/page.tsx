@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
-import PostCardSkeleton from "@/components/PostCardSkeleton";
-import PostList from "@/components/PostList";
+import PostCardSkeleton from "@/components/Post/PostCardSkeleton";
+import PostList from "@/components/Post/PostList";
 import { auth } from "@lib/auth";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";

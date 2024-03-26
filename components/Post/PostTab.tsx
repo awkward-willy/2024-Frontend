@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import PostForm from "@/components/PostForm";
+import PostForm from "@/components/Post/PostForm";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 

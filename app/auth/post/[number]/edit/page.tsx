@@ -1,5 +1,5 @@
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
-import PostTab from "@/components/PostTab";
+import PostTab from "@/components/Post/PostTab";
 import { auth } from "@/lib/auth";
 import { Post } from "@/types/Post";
 import Link from "next/link";
