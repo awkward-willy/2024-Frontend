@@ -8,7 +8,7 @@ import DeletePostButton from "./DeletePostButton";
 
 function PostCard({ post, userName }: { post: Post; userName?: string }) {
   return (
-    <div className="border rounded-md p-4 flex flex-col items-start">
+    <div className="flex flex-col items-start rounded-md border p-4">
       <Button variant="link" asChild>
         <Link href={post.user.html_url} target="_blank">
           <Image
@@ -31,7 +31,7 @@ function PostCard({ post, userName }: { post: Post; userName?: string }) {
         return (
           <div
             key={label.id}
-            className="flex border rounded-sm w-fit px-2 items-center"
+            className="flex w-fit items-center rounded-sm border px-2"
           >
             <DotFilledIcon color={`#${label.color}`} height="30" width="30" />
             <span>{label.name}</span>

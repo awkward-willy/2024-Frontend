@@ -28,7 +28,7 @@ export async function createComment(props: createCommentProps) {
         method: "POST",
         headers: header,
         body: JSON.stringify({ body: props.body }),
-      }
+      },
     ).then((res) => res.json());
 
     const data = {

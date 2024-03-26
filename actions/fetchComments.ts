@@ -27,7 +27,7 @@ export async function fetchComments(props: fetchCommentsProps) {
     {
       method: "GET",
       headers: header,
-    }
+    },
   ).then((res) => res.json());
 
   const data: Comment[] = response.map((data: Comment) => {

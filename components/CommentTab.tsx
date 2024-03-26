@@ -18,7 +18,7 @@ export default function CommentTab({
 
   return (
     <Tabs defaultValue="form">
-      <TabsList className="grid w-full grid-cols-2 max-w-lg">
+      <TabsList className="grid w-full max-w-lg grid-cols-2">
         <TabsTrigger value="form">Form</TabsTrigger>
         <TabsTrigger value="preview">Preview</TabsTrigger>
       </TabsList>
@@ -31,7 +31,7 @@ export default function CommentTab({
         />
       </TabsContent>
       <TabsContent value="preview">
-        <div className="max-w-lg p-4 bg-white rounded shadow-md">
+        <div className="max-w-lg rounded bg-white p-4 shadow-md">
           <MarkdownRenderer body={body} />
         </div>
       </TabsContent>

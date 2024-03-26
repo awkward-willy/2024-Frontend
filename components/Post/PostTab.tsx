@@ -21,7 +21,7 @@ export default function PostTab({
 
   return (
     <Tabs defaultValue="form">
-      <TabsList className="grid w-full grid-cols-2 max-w-lg">
+      <TabsList className="grid w-full max-w-lg grid-cols-2">
         <TabsTrigger value="form">Form</TabsTrigger>
         <TabsTrigger value="preview">Preview</TabsTrigger>
       </TabsList>
@@ -36,8 +36,8 @@ export default function PostTab({
         />
       </TabsContent>
       <TabsContent value="preview">
-        <div className="max-w-lg p-4 bg-white rounded shadow-md">
-          <h1 className="text-xl font-bold border-b mb-4">{title}</h1>
+        <div className="max-w-lg rounded bg-white p-4 shadow-md">
+          <h1 className="mb-4 border-b text-xl font-bold">{title}</h1>
           <MarkdownRenderer body={body} />
         </div>
       </TabsContent>

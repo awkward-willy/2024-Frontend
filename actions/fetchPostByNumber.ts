@@ -22,7 +22,7 @@ export async function fetchPostByNumber(props: fetchPostByNumberProps) {
     {
       method: "GET",
       headers: header,
-    }
+    },
   ).then((res) => res.json());
 
   const data: Post = {

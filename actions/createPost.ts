@@ -17,7 +17,7 @@ export async function createPosts(formData: FormData) {
           Authorization: `token ${session.access_token}`,
         },
         body: JSON.stringify(rawFormData),
-      }
+      },
     );
 
     if (response.ok) {

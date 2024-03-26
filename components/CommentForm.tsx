@@ -73,7 +73,7 @@ export default function CommentForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="max-w-lg gap-4 flex flex-col mt-4 p-4 bg-white rounded shadow-md"
+        className="mt-4 flex max-w-lg flex-col gap-4 rounded bg-white p-4 shadow-md"
       >
         <FormField
           control={form.control}

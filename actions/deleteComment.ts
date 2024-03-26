@@ -19,7 +19,7 @@ export async function deleteComment({ id, token }: deleteCommentProps) {
     {
       method: "DELETE",
       headers: header,
-    }
+    },
   );
 
   return response.status;

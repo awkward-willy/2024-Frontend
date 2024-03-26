@@ -14,7 +14,7 @@ export async function updatePost(formdata: FormData, id: number) {
           Authorization: `token ${session.access_token}`,
         },
         body: JSON.stringify({ title, body }),
-      }
+      },
     );
     return response.status;
   }

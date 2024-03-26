@@ -54,8 +54,8 @@ const InfiniteScrollPost = ({
       {end ? (
         <p>End of posts</p>
       ) : (
-        <div ref={ref} className="w-full flex items-center justify-center">
-          <ReloadIcon className="w-6 h-6 animate-spin" />
+        <div ref={ref} className="flex w-full items-center justify-center">
+          <ReloadIcon className="h-6 w-6 animate-spin" />
         </div>
       )}
     </>

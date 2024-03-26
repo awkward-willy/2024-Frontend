@@ -30,7 +30,7 @@ export async function fetchPosts(props?: fetchPostsProps) {
       method: "GET",
       headers: header,
       next: { revalidate: revalidate },
-    }
+    },
   ).then((res) => res.json());
 
   const data: Post[] = response.map((data: Post) => {

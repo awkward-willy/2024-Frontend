@@ -20,7 +20,7 @@ export async function deletePost(postNumber: string) {
       method: "PATCH",
       headers: header,
       body: JSON.stringify({ state: "closed" }),
-    }
+    },
   );
   return response.status;
 }
