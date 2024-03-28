@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { fetchPosts } from "@/actions/fetchPosts";
@@ -49,13 +49,11 @@ const InfiniteScrollPost = ({
 
   return (
     <>
-      <div className="flex flex-col gap-4">
-        {posts.map((data: Post) => {
-          return <PostCard key={data.id} post={data} userName={userName} />;
-        })}
-      </div>
+      {posts.map((data: Post) => {
+        return <PostCard key={data.id} post={data} userName={userName} />;
+      })}
       {end ? (
-        <p>End of posts</p>
+        <p className="p-4">沒有更多貼文了...</p>
       ) : (
         <div ref={ref} className="flex w-full items-center justify-center">
           <ReloadIcon className="h-6 w-6 animate-spin" />

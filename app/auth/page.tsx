@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-import Navbar from "@/components/Navbar";
 import PostCardSkeleton from "@/components/Post/PostCardSkeleton";
 import PostList from "@/components/Post/PostList";
 import { auth } from "@lib/auth";
@@ -14,10 +13,11 @@ const AuthPage = async () => {
   if (session) {
     return (
       <>
-        <Navbar />
-        <p>Auth Page</p>
+        <p className="m-4 text-2xl font-extrabold">貼文</p>
         <Suspense fallback={<PostCardSkeleton />}>
-          <PostList />
+          <div className="m-4 rounded-md bg-white text-black">
+            <PostList />
+          </div>
         </Suspense>
       </>
     );

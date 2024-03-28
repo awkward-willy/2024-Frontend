@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { deletePost } from "@/actions/deletePost";
 import { Button } from "@components/ui/button";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 export default function DeletePostButton({
   postNumber,
@@ -14,6 +15,8 @@ export default function DeletePostButton({
   const router = useRouter();
   return (
     <Button
+      variant="link"
+      className="hover:text-red-400"
       onClick={async () => {
         await deletePost(postNumber).then((res) => {
           if (res === 200) {
@@ -27,7 +30,7 @@ export default function DeletePostButton({
         });
       }}
     >
-      Delete
+      <TrashIcon height="20" width="20" />
     </Button>
   );
 }
