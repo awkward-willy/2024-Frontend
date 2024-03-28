@@ -16,7 +16,7 @@ export default async function Navbar() {
   const session = await auth();
   if (session) {
     return (
-      <nav className="sticky top-0 z-10 flex items-center justify-between bg-accent px-4 py-2">
+      <nav className="sticky top-0 z-10 flex items-center justify-between rounded-b-md bg-accent px-4 py-2">
         <h1 className="text-lg font-bold md:text-xl">丹尼爾的部落格</h1>
         <div className="flex">
           {session.user.accountName === admin && (
@@ -36,8 +36,8 @@ export default async function Navbar() {
                 className="min-h-4 min-w-4 rounded-full"
               />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem>
+            <DropdownMenuContent>
+              <DropdownMenuItem asChild>
                 <Link href="/api/auth/signout">登出</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -47,5 +47,14 @@ export default async function Navbar() {
     );
   }
 
-  return <div>Navbar</div>;
+  return (
+    <nav className="sticky top-0 z-10 flex items-center justify-between bg-accent px-4 py-2">
+      <Link href="/">
+        <h1 className="text-lg font-bold md:text-xl">丹尼爾的部落格</h1>
+      </Link>
+      <Button variant="link" className="text-white">
+        <Link href="/api/auth/signin">登入</Link>
+      </Button>
+    </nav>
+  );
 }
