@@ -22,9 +22,16 @@ export default function PostTab({
 
   return (
     <Tabs defaultValue="form">
-      <TabsList className="grid w-full max-w-lg grid-cols-2">
-        <TabsTrigger value="form">Form</TabsTrigger>
-        <TabsTrigger value="preview">Preview</TabsTrigger>
+      <TabsList className="grid w-full max-w-xs grid-cols-2">
+        <TabsTrigger value="form" className="data-[state=inactive]:text-black">
+          編輯
+        </TabsTrigger>
+        <TabsTrigger
+          value="preview"
+          className="data-[state=inactive]:text-black"
+        >
+          預覽
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="form">
         <PostForm
@@ -37,9 +44,13 @@ export default function PostTab({
         />
       </TabsContent>
       <TabsContent value="preview">
-        <div className="max-w-lg rounded bg-white p-4 shadow-md">
-          <h1 className="mb-4 border-b text-xl font-bold">{title}</h1>
-          <MarkdownRenderer body={body} />
+        <div className="min-h-96 rounded bg-white p-8 shadow-md">
+          <h1 className="min-h-9 border-b pb-2 text-4xl font-extrabold text-black">
+            {title}
+          </h1>
+          <section className="mt-4">
+            <MarkdownRenderer body={body} />
+          </section>
         </div>
       </TabsContent>
     </Tabs>

@@ -100,7 +100,7 @@ export default function PostForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="mt-4 flex max-w-lg flex-col gap-4 rounded bg-white p-4 shadow-md"
+        className="mt-4 flex flex-col gap-4"
       >
         <FormField
           control={form.control}
@@ -108,16 +108,17 @@ export default function PostForm({
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>標題</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="Title"
+                    placeholder="請輸入標題"
                     type="text"
                     value={title}
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
+                    className="text-md placeholder:text-slate-400"
                   />
                 </FormControl>
                 <FormMessage />
@@ -131,15 +132,16 @@ export default function PostForm({
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>Body</FormLabel>
+                <FormLabel>內容</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
-                    placeholder="Body"
+                    placeholder="請輸入內容（內容須至少 30 字）"
                     value={body}
                     onChange={(e) => {
                       setBody(e.target.value);
                     }}
+                    className="text-md h-48 resize-none placeholder:text-slate-400"
                   />
                 </FormControl>
                 <FormMessage />
@@ -147,8 +149,8 @@ export default function PostForm({
             );
           }}
         />
-        <Button type="submit" className="w-full">
-          {type === "create" ? "Create" : "Edit"}
+        <Button type="submit" variant="ghost" className="bg-secondary/50">
+          {type === "create" ? "新增" : "編輯"}
         </Button>
       </form>
     </Form>
