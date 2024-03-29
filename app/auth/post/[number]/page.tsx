@@ -5,6 +5,7 @@ import BackToAuthButton from "@/components/BackToAuthButton";
 import CommentSection from "@/components/CommentSection";
 import CommentTab from "@/components/CommentTab";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import PostTitle from "@/components/Post/PostTitle";
 import { auth } from "@/lib/auth";
 import { Post } from "@/types/Post";
 
@@ -25,10 +26,8 @@ export default async function PostNumberPage({
     return (
       <>
         <BackToAuthButton />
-        <div className="bg-white p-8 text-black">
-          <h1 className="min-h-9 border-b pb-2 text-4xl font-extrabold text-black">
-            {postData.title}
-          </h1>
+        <div className="rounded-md bg-white p-8 pb-4 text-black">
+          <PostTitle title={postData.title} />
           <MarkdownRenderer body={postData.body} />
           <h2 className="mt-4 font-bold">新增留言</h2>
           <CommentTab type="create" issueNum={postData.number} />

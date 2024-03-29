@@ -13,9 +13,9 @@ const AuthPage = async () => {
   if (session) {
     return (
       <>
-        <p className="m-4 text-2xl font-extrabold">貼文</p>
+        <p className="mb-2 text-2xl font-extrabold">貼文</p>
         <Suspense fallback={<PostCardSkeleton />}>
-          <div className="m-4 rounded-md bg-white text-black">
+          <div className="rounded-md bg-white text-black">
             <PostList />
           </div>
         </Suspense>

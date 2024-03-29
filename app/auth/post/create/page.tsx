@@ -13,9 +13,9 @@ export default async function CreatePage() {
   }
 
   return (
-    <div className="m-4 sm:m-10">
+    <>
       <BackToAuthButton />
       <PostTab type="create" />
-    </div>
+    </>
   );
 }
