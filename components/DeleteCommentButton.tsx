@@ -4,7 +4,11 @@ import { toast } from "sonner";
 
 import { deleteComment } from "@/actions/deleteComment";
 import { Button } from "@components/ui/button";
-import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
+import {
+  CheckCircledIcon,
+  CrossCircledIcon,
+  TrashIcon,
+} from "@radix-ui/react-icons";
 
 interface DeleteCommentButtonProps {
   id: string;
@@ -20,6 +24,7 @@ export default function DeleteCommentButton({
   return (
     <Button
       variant="link"
+      className="hover:text-red-400"
       onClick={async () => {
         await deleteComment({ id, token }).then((status) => {
           if (status === 204) {
@@ -36,7 +41,7 @@ export default function DeleteCommentButton({
         });
       }}
     >
-      Delete
+      <TrashIcon height="20" width="20" />
     </Button>
   );
 }

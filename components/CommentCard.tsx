@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { memo } from "react";
 
 import { Comment } from "@/types/Comment";
+import { Button } from "@components/ui/button";
 
 import DeleteCommentButton from "./DeleteCommentButton";
 
@@ -17,27 +19,32 @@ function CommentCard({
   removeComment: (id: string) => void;
 }) {
   return (
-    <>
-      <div>
-        <Image
-          src={comment.user.avatar_url}
-          alt={comment.user.login}
-          width={50}
-          height={50}
-          className="rounded-full"
-        />
-        <span>{comment.user.login}</span>
+    <div className="flex w-full flex-col items-start justify-start rounded-md border-b border-gray-200 bg-white px-2 py-4">
+      <div className="flex w-full flex-wrap items-center">
+        <Button variant="link" asChild className="pl-0">
+          <Link href={comment.user.html_url} target="_blank" className="gap-2">
+            <Image
+              src={comment.user.avatar_url}
+              alt={comment.user.login}
+              width={30}
+              height={30}
+              className="rounded-full"
+            />
+            <p>{comment.user.login}</p>
+          </Link>
+        </Button>
+        <p>{comment.created_at}</p>
+        <div className="flex-grow"></div>
+        {comment.user.login === userName && (
+          <DeleteCommentButton
+            id={comment.id}
+            token={token}
+            removeComment={removeComment}
+          />
+        )}
       </div>
-      <div>{comment.body}</div>
-      <div>{comment.created_at}</div>
-      {comment.user.login === userName && (
-        <DeleteCommentButton
-          id={comment.id}
-          token={token}
-          removeComment={removeComment}
-        />
-      )}
-    </>
+      <p>{comment.body}</p>
+    </div>
   );
 }
 

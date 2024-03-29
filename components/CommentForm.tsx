@@ -43,8 +43,6 @@ export default function CommentForm({
     mode: "onChange",
   });
 
-  const router = useRouter();
-
   const handleSubmit = async () => {
     const { body } = form.getValues();
     const response = await createComment({
@@ -74,7 +72,7 @@ export default function CommentForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="mt-4 flex max-w-lg flex-col gap-4 rounded bg-white p-4 shadow-md"
+        className="mt-4 flex flex-col gap-4"
       >
         <FormField
           control={form.control}
@@ -91,6 +89,7 @@ export default function CommentForm({
                     onChange={(e) => {
                       setBody(e.target.value);
                     }}
+                    className="h-32 resize-none bg-white placeholder:text-slate-400"
                   />
                 </FormControl>
                 <FormMessage />
@@ -98,8 +97,8 @@ export default function CommentForm({
             );
           }}
         />
-        <Button type="submit" className="w-full">
-          {type === "create" ? "Create" : "Edit"}
+        <Button type="submit" variant="ghost" className="bg-secondary/50">
+          {type === "create" ? "新增" : "編輯"}
         </Button>
       </form>
     </Form>

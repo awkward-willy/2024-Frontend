@@ -20,9 +20,16 @@ export default function CommentTab({
 
   return (
     <Tabs defaultValue="form">
-      <TabsList className="grid w-full max-w-lg grid-cols-2">
-        <TabsTrigger value="form">Form</TabsTrigger>
-        <TabsTrigger value="preview">Preview</TabsTrigger>
+      <TabsList className="grid w-full max-w-xs grid-cols-2">
+        <TabsTrigger value="form" className="data-[state=inactive]:text-black">
+          編輯
+        </TabsTrigger>
+        <TabsTrigger
+          value="preview"
+          className="data-[state=inactive]:text-black"
+        >
+          預覽
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="form">
         <CommentForm
@@ -33,7 +40,7 @@ export default function CommentTab({
         />
       </TabsContent>
       <TabsContent value="preview">
-        <div className="max-w-lg rounded bg-white p-4 shadow-md">
+        <div className="h-48 overflow-y-scroll rounded bg-white p-8 shadow-md">
           <MarkdownRenderer body={body} />
         </div>
       </TabsContent>

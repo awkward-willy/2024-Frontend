@@ -5,5 +5,6 @@ export interface Comment {
   user: {
     login: string;
     avatar_url: string;
+    html_url: string;
   };
 }

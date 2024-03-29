@@ -61,7 +61,7 @@ const InfiniteScrollComment = ({
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <section className="flex flex-col items-start gap-4">
         {comments.map((data: Comment) => {
           return (
             <CommentCard
@@ -73,9 +73,9 @@ const InfiniteScrollComment = ({
             />
           );
         })}
-      </div>
+      </section>
       {end ? (
-        <p>End of comments</p>
+        <p className="pt-4">沒有更多留言了...</p>
       ) : (
         <div ref={ref} className="flex w-full items-center justify-center">
           <ReloadIcon className="h-6 w-6 animate-spin" />
