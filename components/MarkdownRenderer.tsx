@@ -8,7 +8,7 @@ import remarkMath from "remark-math";
 export default function MarkdownRenderer({ body }: { body: string }) {
   return (
     <Markdown
-      className="prose prose-neutral"
+      className="prose prose-xl prose-neutral mt-4 max-w-full break-words"
       remarkPlugins={[remarkGfm, remarkMath]}
       rehypePlugins={[rehypeMathjax]}
       components={{
