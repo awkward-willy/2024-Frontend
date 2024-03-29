@@ -17,7 +17,9 @@ export default async function Navbar() {
   if (session) {
     return (
       <nav className="sticky top-0 z-10 flex items-center justify-between rounded-b-md bg-accent px-4 py-2">
-        <h1 className="text-lg font-bold md:text-xl">丹尼爾的部落格</h1>
+        <Link href="/">
+          <h1 className="text-lg font-bold md:text-xl">丹尼爾的部落格</h1>
+        </Link>
         <div className="flex">
           {session.user.accountName === admin && (
             <Button variant="ghost" asChild>
