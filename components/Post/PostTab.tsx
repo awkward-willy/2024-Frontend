@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
-import MarkdownRenderer from "@/components/MarkdownRenderer";
-import PostForm from "@/components/Post/PostForm";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import MarkdownRenderer from "@components/MarkdownRenderer";
+import PostForm from "@components/Post/PostForm";
+import PostTitle from "@components/Post/PostTitle";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs";
 
 export default function PostTab({
   initTitle,
@@ -45,12 +46,8 @@ export default function PostTab({
       </TabsContent>
       <TabsContent value="preview">
         <div className="min-h-96 rounded bg-white p-8 shadow-md">
-          <h1 className="min-h-9 border-b pb-2 text-4xl font-extrabold text-black">
-            {title}
-          </h1>
-          <section className="mt-4">
-            <MarkdownRenderer body={body} />
-          </section>
+          <PostTitle title={title} />
+          <MarkdownRenderer body={body} />
         </div>
       </TabsContent>
     </Tabs>

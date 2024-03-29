@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { Suspense } from "react";
 
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
+import BackToAuthButton from "@/components/BackToAuthButton";
 import CommentSection from "@/components/CommentSection";
 import CommentTab from "@/components/CommentTab";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -24,14 +24,19 @@ export default async function PostNumberPage({
   if (session) {
     return (
       <>
-        <Link href="/">Back</Link>
-        <h1>{postData.title}</h1>
-        <MarkdownRenderer body={postData.body} />
-        <h2>Comments</h2>
-        <CommentTab type="create" issueNum={postData.number} />
-        <Suspense fallback={<div>Loading comments...</div>}>
-          <CommentSection postNumber={params.number} />
-        </Suspense>
+        <BackToAuthButton />
+        <div className="bg-white p-8 text-black">
+          <h1 className="min-h-9 border-b pb-2 text-4xl font-extrabold text-black">
+            {postData.title}
+          </h1>
+          <MarkdownRenderer body={postData.body} />
+          <h2 className="mt-4 font-bold">新增留言</h2>
+          <CommentTab type="create" issueNum={postData.number} />
+          <h2 className="mt-4 font-bold">留言</h2>
+          <Suspense fallback={<div>Loading comments...</div>}>
+            <CommentSection postNumber={params.number} />
+          </Suspense>
+        </div>
       </>
     );
   }

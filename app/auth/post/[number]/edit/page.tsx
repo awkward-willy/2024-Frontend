@@ -1,9 +1,8 @@
-import Link from "next/link";
-
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
-import PostTab from "@/components/Post/PostTab";
 import { auth } from "@/lib/auth";
 import { Post } from "@/types/Post";
+import BackToAuthButton from "@components/BackToAuthButton";
+import PostTab from "@components/Post/PostTab";
 
 export default async function EditPostNumberPage({
   params,
@@ -18,7 +17,7 @@ export default async function EditPostNumberPage({
   if (session) {
     return (
       <>
-        <Link href="/">Back</Link>
+        <BackToAuthButton />
         <PostTab
           initTitle={postData.title}
           initBody={postData.body}
