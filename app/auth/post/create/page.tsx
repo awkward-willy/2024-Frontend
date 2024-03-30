@@ -1,9 +1,14 @@
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import env from "@/lib/env";
 import BackToAuthButton from "@components/BackToAuthButton";
 import PostTab from "@components/Post/PostTab";
 import { auth } from "@lib/auth";
+
+export const metadata: Metadata = {
+  title: "CreatePost",
+};
 
 export default async function CreatePage() {
   const session = await auth();

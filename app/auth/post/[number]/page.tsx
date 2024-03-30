@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
@@ -8,6 +9,10 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 import PostTitle from "@/components/Post/PostTitle";
 import { auth } from "@/lib/auth";
 import { Post } from "@/types/Post";
+
+export const metadata: Metadata = {
+  title: "Post",
+};
 
 export const revalidate = 60;
 

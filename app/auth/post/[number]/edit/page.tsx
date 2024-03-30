@@ -1,8 +1,14 @@
+import { Metadata } from "next";
+
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
 import { auth } from "@/lib/auth";
 import { Post } from "@/types/Post";
 import BackToAuthButton from "@components/BackToAuthButton";
 import PostTab from "@components/Post/PostTab";
+
+export const metadata: Metadata = {
+  title: "EditPost",
+};
 
 export default async function EditPostNumberPage({
   params,

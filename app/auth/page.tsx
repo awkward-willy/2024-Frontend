@@ -1,9 +1,14 @@
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import PostCardSkeleton from "@/components/Post/PostCardSkeleton";
 import PostList from "@/components/Post/PostList";
 import { auth } from "@lib/auth";
+
+export const metadata: Metadata = {
+  title: "Posts",
+};
 
 export const revalidate = 60;
 
