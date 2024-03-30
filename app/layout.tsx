@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_TC } from "next/font/google";
 
 import ConsolePrinter from "@/components/ConsolePrinter";
 import Navbar from "@/components/Navbar";
@@ -8,7 +8,10 @@ import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const notoSansTC = Noto_Sans_TC({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -24,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="zh-Hant-TW">
+      <body className={`${notoSansTC.className}`}>
         <Navbar />
         <main className="mx-4 my-4 sm:mx-8">{children}</main>
         <ScrollToTopButton />
