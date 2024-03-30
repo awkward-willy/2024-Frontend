@@ -19,7 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 
 const formSchema = z.object({
-  body: z.string().trim().min(1, { message: "Comment 不得為空" }),
+  body: z.string().trim().min(1, { message: "留言不得為空" }),
 });
 
 interface PostFormProps {
@@ -80,11 +80,11 @@ export default function CommentForm({
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>Body</FormLabel>
+                <FormLabel>內容</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
-                    placeholder="Body"
+                    placeholder="留言內容"
                     value={body}
                     onChange={(e) => {
                       setBody(e.target.value);

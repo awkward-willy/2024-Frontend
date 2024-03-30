@@ -39,9 +39,9 @@ export default async function PostNumberPage({
         <div className="rounded-md bg-white p-8 pb-4 text-black">
           <PostTitle title={postData.title} />
           <MarkdownRenderer body={postData.body} />
-          <h2 className="mt-4 font-bold">新增留言</h2>
+          <h2 className="my-4 border-t pt-4 font-bold">新增留言</h2>
           <CommentTab type="create" issueNum={postData.number} />
-          <h2 className="mt-4 font-bold">留言</h2>
+          <h2 className="mt-4 border-t pt-4 font-bold">留言</h2>
           <Suspense fallback={<div>Loading comments...</div>}>
             <CommentSection postNumber={params.number} />
           </Suspense>
