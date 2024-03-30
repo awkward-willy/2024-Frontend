@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
@@ -26,6 +27,10 @@ export default async function PostNumberPage({
     number: params.number,
     token: session?.access_token,
   });
+
+  if (postData.state === "closed") {
+    notFound();
+  }
 
   if (session) {
     return (
