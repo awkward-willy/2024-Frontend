@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import { auth } from "@/lib/auth";
 import env from "@/lib/env";
 
@@ -21,6 +23,7 @@ export async function updatePost(formdata: FormData, id: number) {
         body: JSON.stringify({ title, body }),
       },
     );
+    revalidatePath("/auth");
     return response.status;
   }
 
