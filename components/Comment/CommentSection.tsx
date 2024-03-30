@@ -1,5 +1,5 @@
 import { fetchComments } from "@/actions/fetchComments";
-import InfiniteScrollComment from "@/components/InfiniteScrollComment";
+import InfiniteScrollComment from "@/components/Comment/InfiniteScrollComment";
 import { auth } from "@/lib/auth";
 
 export default async function CommentSection({

@@ -41,23 +41,24 @@ function PostCard({ post, userName }: { post: Post; userName?: string }) {
           </div>
         )}
       </div>
-      <Button variant="link" asChild>
-        <Link href={`/auth/post/${post.number}`} className="text-xl font-bold">
-          {post.title}
-        </Link>
-      </Button>
-      <div className="flex flex-wrap gap-2">
-        {post.labels.map((label: Label) => {
-          return (
-            <div key={label.id} className="flex w-fit items-center">
-              <DotFilledIcon color={`#${label.color}`} height="30" width="30" />
-              <span>{label.name}</span>
-            </div>
-          );
-        })}
-      </div>
-
-      <p className="mx-4">{post.comments}&nbsp;則留言</p>
+      <Link href={`/auth/post/${post.number}`}>
+        <p className="ml-4 break-all pb-2 text-xl">{post.title}</p>
+        <div className="flex flex-wrap gap-2">
+          {post.labels.map((label: Label) => {
+            return (
+              <div key={label.id} className="flex w-fit items-center">
+                <DotFilledIcon
+                  color={`#${label.color}`}
+                  height="30"
+                  width="30"
+                />
+                <span>{label.name}</span>
+              </div>
+            );
+          })}
+        </div>
+        <p className="mx-4">{post.comments}&nbsp;則留言</p>
+      </Link>
     </article>
   );
 }

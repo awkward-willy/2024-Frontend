@@ -2,8 +2,8 @@ import { Suspense } from "react";
 
 import { fetchPostByNumber } from "@/actions/fetchPostByNumber";
 import BackToAuthButton from "@/components/BackToAuthButton";
-import CommentSection from "@/components/CommentSection";
-import CommentTab from "@/components/CommentTab";
+import CommentSection from "@/components/Comment/CommentSection";
+import CommentTab from "@/components/Comment/CommentTab";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import PostTitle from "@/components/Post/PostTitle";
 import { auth } from "@/lib/auth";
