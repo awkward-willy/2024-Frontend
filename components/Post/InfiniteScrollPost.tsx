@@ -25,6 +25,12 @@ const InfiniteScrollPost = ({
   const [end, setEnd] = useState(endofPosts);
   const [ref, inView] = useInView();
 
+  const removePost = (num: number) => {
+    setPosts((prev: Post[]) => {
+      return prev.filter((post: Post) => post.number !== num);
+    });
+  };
+
   useEffect(() => {
     if (inView && !end) {
       const fetchMore = async () => {
@@ -50,7 +56,14 @@ const InfiniteScrollPost = ({
   return (
     <>
       {posts.map((data: Post) => {
-        return <PostCard key={data.id} post={data} userName={userName} />;
+        return (
+          <PostCard
+            key={data.id}
+            post={data}
+            userName={userName}
+            removePost={removePost}
+          />
+        );
       })}
       {end ? (
         <p className="p-4">沒有更多貼文了...</p>

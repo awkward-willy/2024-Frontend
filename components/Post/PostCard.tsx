@@ -4,11 +4,19 @@ import { memo } from "react";
 
 import { Post } from "@/types/Post";
 import { Button } from "@components/ui/button";
-import { DotFilledIcon, Pencil2Icon } from "@radix-ui/react-icons";
+import { Pencil2Icon } from "@radix-ui/react-icons";
 
 import DeletePostButton from "./DeletePostButton";
 
-function PostCard({ post, userName }: { post: Post; userName?: string }) {
+function PostCard({
+  post,
+  userName,
+  removePost,
+}: {
+  post: Post;
+  userName?: string;
+  removePost?: (id: number) => void;
+}) {
   return (
     <article className="flex flex-col items-start justify-start rounded-md border border-b border-gray-200 bg-white px-2 py-4">
       <div className="flex w-full flex-wrap items-center">
@@ -37,7 +45,10 @@ function PostCard({ post, userName }: { post: Post; userName?: string }) {
                 <Pencil2Icon height="20" width="20" />
               </Link>
             </Button>
-            <DeletePostButton postNumber={post.number.toString()} />
+            <DeletePostButton
+              postNumber={post.number.toString()}
+              removePost={removePost}
+            />
           </div>
         )}
       </div>

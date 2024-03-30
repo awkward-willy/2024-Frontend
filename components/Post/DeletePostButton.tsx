@@ -1,5 +1,6 @@
 "use client";
 
+import { revalidatePath } from "next/cache";
 import { toast } from "sonner";
 
 import { deletePost } from "@/actions/deletePost";
@@ -14,8 +15,10 @@ import { PopoverClose } from "@radix-ui/react-popover";
 
 export default function DeletePostButton({
   postNumber,
+  removePost,
 }: {
   postNumber: string;
+  removePost?: (id: number) => void;
 }) {
   return (
     <Popover>
@@ -33,6 +36,9 @@ export default function DeletePostButton({
             await deletePost(postNumber).then((res) => {
               if (res === 200) {
                 toast("成功刪除文章");
+                if (removePost) {
+                  removePost(parseInt(postNumber));
+                }
               } else {
                 toast("刪除文章失敗", {
                   description: "Error code: " + res,
