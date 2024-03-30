@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { auth } from "@/lib/auth";
+import env from "@/lib/env";
 
 interface createCommentProps {
   number: string;
@@ -11,6 +12,9 @@ interface createCommentProps {
 }
 
 export async function createComment(props: createCommentProps) {
+  const adminName = env.GITHUB_ADMIN_NAME;
+  const repoName = env.GITHUB_REPO_NAME;
+
   const session = await auth();
   if (session) {
     const token = session.access_token;
@@ -24,7 +28,7 @@ export async function createComment(props: createCommentProps) {
     }
 
     const response = await fetch(
-      `https://api.github.com/repos/awkward-willy/test/issues/${props.number}/comments`,
+      `https://api.github.com/repos/${adminName}/${repoName}/issues/${props.number}/comments`,
       {
         method: "POST",
         headers: header,

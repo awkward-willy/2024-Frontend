@@ -1,3 +1,6 @@
+"use server";
+
+import env from "@/lib/env";
 import { Post } from "@/types/Post";
 
 interface fetchPostsProps {
@@ -8,6 +11,9 @@ interface fetchPostsProps {
 }
 
 export async function fetchPosts(props?: fetchPostsProps) {
+  const adminName = env.GITHUB_ADMIN_NAME;
+  const repoName = env.GITHUB_REPO_NAME;
+
   // default page is 1, limit is 10, token is empty string
   const page = props?.page ?? 1;
   const limit = props?.limit ?? 10;
@@ -25,7 +31,7 @@ export async function fetchPosts(props?: fetchPostsProps) {
   }
 
   const response = await fetch(
-    `https://api.github.com/repos/awkward-willy/test/issues?page=${page}&per_page=${limit}&state=open`,
+    `https://api.github.com/repos/${adminName}/${repoName}/issues?page=${page}&per_page=${limit}&state=open`,
     {
       method: "GET",
       headers: header,

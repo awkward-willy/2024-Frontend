@@ -1,3 +1,6 @@
+"use server";
+
+import env from "@/lib/env";
 import { Comment } from "@/types/Comment";
 
 interface fetchCommentsProps {
@@ -12,7 +15,8 @@ export async function fetchComments(props: fetchCommentsProps) {
   const page = props?.page ?? 1;
   const limit = props?.limit ?? 10;
   const number = props.number;
-
+  const adminName = env.GITHUB_ADMIN_NAME;
+  const repoName = env.GITHUB_REPO_NAME;
   let header;
   if (token) {
     header = {
@@ -23,7 +27,7 @@ export async function fetchComments(props: fetchCommentsProps) {
   }
 
   const response = await fetch(
-    `https://api.github.com/repos/awkward-willy/test/issues/${number}/comments?page=${page}&per_page=${limit}`,
+    `https://api.github.com/repos/${adminName}/${repoName}/issues/${number}/comments?page=${page}&per_page=${limit}`,
     {
       method: "GET",
       headers: header,

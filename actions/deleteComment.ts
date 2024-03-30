@@ -1,11 +1,15 @@
 "use server";
 
+import env from "@/lib/env";
+
 interface deleteCommentProps {
   id: string;
   token?: string;
 }
 
 export async function deleteComment({ id, token }: deleteCommentProps) {
+  const adminName = env.GITHUB_ADMIN_NAME;
+  const repoName = env.GITHUB_REPO_NAME;
   let header;
   if (token) {
     header = {
@@ -15,7 +19,7 @@ export async function deleteComment({ id, token }: deleteCommentProps) {
     header = {};
   }
   const response = await fetch(
-    `https://api.github.com/repos/awkward-willy/test/issues/comments/${id}`,
+    `https://api.github.com/repos/${adminName}/${repoName}/issues/comments/${id}`,
     {
       method: "DELETE",
       headers: header,

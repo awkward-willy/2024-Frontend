@@ -1,3 +1,6 @@
+"use server";
+
+import env from "@/lib/env";
 import { Post } from "@/types/Post";
 
 interface fetchPostByNumberProps {
@@ -7,6 +10,8 @@ interface fetchPostByNumberProps {
 
 export async function fetchPostByNumber(props: fetchPostByNumberProps) {
   const token = props?.token ?? "";
+  const adminName = env.GITHUB_ADMIN_NAME;
+  const repoName = env.GITHUB_REPO_NAME;
 
   let header;
   if (token) {
@@ -18,7 +23,7 @@ export async function fetchPostByNumber(props: fetchPostByNumberProps) {
   }
 
   const response = await fetch(
-    `https://api.github.com/repos/awkward-willy/test/issues/${props.number}`,
+    `https://api.github.com/repos/${adminName}/${repoName}/issues/${props.number}`,
     {
       method: "GET",
       headers: header,

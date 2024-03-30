@@ -2,9 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 
+import env from "@/lib/env";
 import { auth } from "@lib/auth";
 
 export async function createPosts(formData: FormData) {
+  const adminName = env.GITHUB_ADMIN_NAME;
+  const repoName = env.GITHUB_REPO_NAME;
   const session = await auth();
   if (session) {
     const rawFormData = {
@@ -12,7 +15,7 @@ export async function createPosts(formData: FormData) {
       body: formData.get("body"),
     };
     const response = await fetch(
-      "https://api.github.com/repos/awkward-willy/test/issues",
+      `https://api.github.com/repos/${adminName}/${repoName}/issues`,
       {
         method: "POST",
         headers: {

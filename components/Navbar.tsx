@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
+import env from "@/lib/env";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +13,7 @@ import {
 import { PlusIcon } from "@radix-ui/react-icons";
 
 export default async function Navbar() {
-  const admin = process.env.ADMIN_NAME;
+  const admin = env.GITHUB_ADMIN_NAME;
   const session = await auth();
   if (session) {
     return (

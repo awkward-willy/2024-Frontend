@@ -1,10 +1,13 @@
 "use server";
 
 import { auth } from "@/lib/auth";
+import env from "@/lib/env";
 
 export async function deletePost(postNumber: string) {
   const session = await auth();
   const token = session?.access_token;
+  const adminName = env.GITHUB_ADMIN_NAME;
+  const repoName = env.GITHUB_REPO_NAME;
 
   let header;
   if (token) {
@@ -15,7 +18,7 @@ export async function deletePost(postNumber: string) {
     header = {};
   }
   const response = await fetch(
-    `https://api.github.com/repos/awkward-willy/test/issues/${postNumber}`,
+    `https://api.github.com/repos/${adminName}/${repoName}/issues/${postNumber}`,
     {
       method: "PATCH",
       headers: header,
