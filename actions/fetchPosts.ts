@@ -46,7 +46,6 @@ export async function fetchPosts(props?: fetchPostsProps) {
       title: data.title,
       body: data.body,
       comments: data.comments,
-      labels: data.labels,
       state: data.state,
       created_at: new Date(data.created_at).toLocaleString(),
       user: data.user,

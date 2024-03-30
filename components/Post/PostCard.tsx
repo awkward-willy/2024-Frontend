@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
 
-import { Label, Post } from "@/types/Post";
+import { Post } from "@/types/Post";
 import { Button } from "@components/ui/button";
 import { DotFilledIcon, Pencil2Icon } from "@radix-ui/react-icons";
 
@@ -42,21 +42,7 @@ function PostCard({ post, userName }: { post: Post; userName?: string }) {
         )}
       </div>
       <Link href={`/auth/post/${post.number}`}>
-        <p className="ml-4 break-all pb-2 text-xl">{post.title}</p>
-        <div className="flex flex-wrap gap-2">
-          {post.labels.map((label: Label) => {
-            return (
-              <div key={label.id} className="flex w-fit items-center">
-                <DotFilledIcon
-                  color={`#${label.color}`}
-                  height="30"
-                  width="30"
-                />
-                <span>{label.name}</span>
-              </div>
-            );
-          })}
-        </div>
+        <p className="ml-4 break-all pb-2 pr-4 text-xl">{post.title}</p>
         <p className="mx-4">{post.comments}&nbsp;則留言</p>
       </Link>
     </article>

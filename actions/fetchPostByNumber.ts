@@ -36,7 +36,6 @@ export async function fetchPostByNumber(props: fetchPostByNumberProps) {
     title: response.title,
     body: response.body,
     comments: response.comments,
-    labels: response.labels,
     state: response.state,
     created_at: new Date(response.created_at).toLocaleString(),
     user: response.user,

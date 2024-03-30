@@ -1,9 +1,3 @@
-export interface Label {
-  id: number;
-  name: string;
-  color: string;
-}
-
 export interface PostUser {
   login: string;
   id: number;
@@ -17,7 +11,6 @@ export interface Post {
   title: string;
   body: string;
   comments: number;
-  labels: Label[];
   state: string;
   created_at: string;
   user: PostUser;
