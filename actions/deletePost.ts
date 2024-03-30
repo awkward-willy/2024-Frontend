@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import { auth } from "@/lib/auth";
 import env from "@/lib/env";
 
@@ -25,5 +27,8 @@ export async function deletePost(postNumber: string) {
       body: JSON.stringify({ state: "closed" }),
     },
   );
+
+  revalidatePath("/auth");
+
   return response.status;
 }
