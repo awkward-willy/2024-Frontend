@@ -1,5 +1,4 @@
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -43,7 +42,10 @@ export default function CommentForm({
     mode: "onChange",
   });
 
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const handleSubmit = async () => {
+    setButtonDisabled(true);
     const { body } = form.getValues();
     const response = await createComment({
       number: issueNum.toString(),
@@ -61,6 +63,7 @@ export default function CommentForm({
         icon: <CrossCircledIcon color="red" />,
         description: "請再試一次",
       });
+      setButtonDisabled(false);
     }
   };
 
@@ -97,7 +100,12 @@ export default function CommentForm({
             );
           }}
         />
-        <Button type="submit" variant="ghost" className="bg-secondary/50">
+        <Button
+          type="submit"
+          variant="ghost"
+          className="bg-secondary/50"
+          disabled={buttonDisabled}
+        >
           {type === "create" ? "新增" : "編輯"}
         </Button>
       </form>
