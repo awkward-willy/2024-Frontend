@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -46,6 +46,7 @@ export default function PostForm({
   issueNum,
 }: PostFormProps) {
   const router = useRouter();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,6 +57,7 @@ export default function PostForm({
   });
 
   const handleSubmit = async () => {
+    setButtonDisabled(true);
     if (type === "create") {
       const formData = new FormData();
       formData.append("title", form.getValues("title"));
@@ -71,6 +73,7 @@ export default function PostForm({
           description: "錯誤碼：" + res.status,
           icon: <CrossCircledIcon color="red" />,
         });
+        setButtonDisabled(false);
       }
     } else {
       const formData = new FormData();
@@ -87,6 +90,7 @@ export default function PostForm({
           description: "錯誤碼：" + res,
           icon: <CrossCircledIcon color="red" />,
         });
+        setButtonDisabled(false);
       }
     }
   };
@@ -149,7 +153,12 @@ export default function PostForm({
             );
           }}
         />
-        <Button type="submit" variant="ghost" className="bg-secondary/50">
+        <Button
+          type="submit"
+          variant="ghost"
+          className="bg-secondary/50"
+          disabled={buttonDisabled}
+        >
           {type === "create" ? "新增" : "編輯"}
         </Button>
       </form>
