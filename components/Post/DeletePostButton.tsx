@@ -1,6 +1,6 @@
 "use client";
 
-import { revalidatePath } from "next/cache";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { deletePost } from "@/actions/deletePost";
@@ -16,14 +16,18 @@ import { PopoverClose } from "@radix-ui/react-popover";
 export default function DeletePostButton({
   postNumber,
   removePost,
+  className,
 }: {
   postNumber: string;
   removePost?: (id: number) => void;
+  className?: string;
 }) {
+  const router = useRouter();
+  const path = usePathname();
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="link" aria-label="delete post">
+        <Button variant="link" aria-label="delete post" className={className}>
           <TrashIcon height="20" width="20" className="hover:text-red-400" />
         </Button>
       </PopoverTrigger>
@@ -38,6 +42,9 @@ export default function DeletePostButton({
                 toast("成功刪除文章");
                 if (removePost) {
                   removePost(parseInt(postNumber));
+                }
+                if (path === `/auth/post/${postNumber}`) {
+                  router.push("/auth");
                 }
               } else {
                 toast("刪除文章失敗", {
