@@ -43,6 +43,7 @@ export async function createComment(props: createCommentProps) {
       user: response.user,
     };
 
+    revalidatePath("/auth");
     revalidatePath(`/auth/post/${props.number}`);
 
     return data;
