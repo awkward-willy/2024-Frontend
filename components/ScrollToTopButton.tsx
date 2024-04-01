@@ -32,6 +32,7 @@ export default function ScrollToTopButton() {
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
+        aria-label="scroll to top"
       >
         <ChevronUpIcon width={24} height={24} />
       </Button>

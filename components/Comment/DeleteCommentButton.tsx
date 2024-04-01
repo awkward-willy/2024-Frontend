@@ -30,7 +30,7 @@ export default function DeleteCommentButton({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="link">
+        <Button variant="link" aria-label="delete comment">
           <TrashIcon height="20" width="20" className="hover:text-red-400" />
         </Button>
       </PopoverTrigger>

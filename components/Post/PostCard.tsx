@@ -41,7 +41,10 @@ function PostCard({
               asChild
               className="px-0 hover:text-background/90"
             >
-              <Link href={`/auth/post/${post.number}/edit`}>
+              <Link
+                href={`/auth/post/${post.number}/edit`}
+                aria-label="edit post"
+              >
                 <Pencil2Icon height="20" width="20" />
               </Link>
             </Button>

@@ -23,7 +23,7 @@ export default async function Navbar() {
         </Link>
         <div className="flex">
           {session.user.accountName === admin && (
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" asChild aria-label="create post">
               <Link href="/auth/post/create">
                 <PlusIcon className="h-6 w-6" />
               </Link>

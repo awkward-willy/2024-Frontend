@@ -25,7 +25,7 @@ function CommentCard({
           <Link href={comment.user.html_url} target="_blank" className="gap-2">
             <Image
               src={comment.user.avatar_url}
-              alt={comment.user.login}
+              alt={`${comment.user.login}'s avatar`}
               width={30}
               height={30}
               className="rounded-full"
