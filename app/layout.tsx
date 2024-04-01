@@ -18,7 +18,8 @@ export const metadata: Metadata = {
     default: "Dcard 2024 Frontend",
     template: "Dcard 2024 Frontend | %s",
   },
-  description: "",
+  description:
+    "歡迎來到丹尼爾的部落格！這是Willy_Awkward為了Dcard 2024 Frontend Intern而建立的部落格，希望您能夠喜歡！",
 };
 
 export default function RootLayout({
