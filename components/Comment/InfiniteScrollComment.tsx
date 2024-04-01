@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { fetchComments } from "@/actions/fetchComments";
+import { useRerenderStore } from "@/lib/stores/store";
 import { Comment } from "@/types/Comment";
+import CommentCard from "@components/Comment/CommentCard";
 import { ReloadIcon } from "@radix-ui/react-icons";
-
-import CommentCard from "./CommentCard";
 
 const InfiniteScrollComment = ({
   initialComments,
@@ -26,6 +26,18 @@ const InfiniteScrollComment = ({
   const [page, setPage] = useState(1);
   const [end, setEnd] = useState(endofComments);
   const [ref, inView] = useInView();
+  const rerender = useRerenderStore((state) => state.rerender);
+  const toggleRerender = useRerenderStore((state) => state.toggleRerender);
+
+  useEffect(() => {
+    if (rerender) {
+      setComments([]);
+      setPage(0);
+      setEnd(false);
+      toggleRerender();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rerender]);
 
   const removeComment = (id: string) => {
     setComments((prev: Comment[]) => {

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -14,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { useRerenderStore } from "@/lib/stores/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 
@@ -41,9 +44,8 @@ export default function CommentForm({
     },
     mode: "onChange",
   });
-
   const [buttonDisabled, setButtonDisabled] = useState(false);
-
+  const toggleRerender = useRerenderStore((state) => state.toggleRerender);
   const handleSubmit = async () => {
     setButtonDisabled(true);
     const { body } = form.getValues();
@@ -52,12 +54,13 @@ export default function CommentForm({
       body,
     });
     if (response) {
-      location.reload();
+      toggleRerender();
       toast("成功新增留言", {
         icon: <CheckCircledIcon color="green" />,
       });
       setBody("");
       form.reset();
+      setButtonDisabled(false);
     } else {
       toast("新增留言失敗", {
         icon: <CrossCircledIcon color="red" />,
@@ -103,7 +106,7 @@ export default function CommentForm({
         <Button
           type="submit"
           variant="ghost"
-          className="bg-secondary/50"
+          className="bg-secondary"
           disabled={buttonDisabled}
         >
           {type === "create" ? "新增" : "編輯"}
