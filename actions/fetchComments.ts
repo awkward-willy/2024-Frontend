@@ -38,7 +38,9 @@ export async function fetchComments(props: fetchCommentsProps) {
     return {
       id: data.id,
       body: data.body,
-      created_at: new Date(data.created_at).toLocaleString(),
+      created_at: new Date(data.created_at).toLocaleString("zh-TW", {
+        timeZone: "Asia/Taipei",
+      }),
       user: data.user,
     };
   });

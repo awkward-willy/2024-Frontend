@@ -39,7 +39,7 @@ export async function createComment(props: createCommentProps) {
     const data = {
       id: response.id,
       body: response.body,
-      created_at: new Date(response.created_at).toLocaleString(),
+      created_at: new Date(response.created_at).toLocaleString('zh-TW', { timeZone: "Asia/Taipei" }),
       user: response.user,
     };
 

@@ -47,7 +47,9 @@ export async function fetchPosts(props?: fetchPostsProps) {
       body: data.body,
       comments: data.comments,
       state: data.state,
-      created_at: new Date(data.created_at).toLocaleString(),
+      created_at: new Date(data.created_at).toLocaleString("zh-TW", {
+        timeZone: "Asia/Taipei",
+      }),
       updated_at: new Date(data.updated_at ?? new Date()),
       user: data.user,
     };

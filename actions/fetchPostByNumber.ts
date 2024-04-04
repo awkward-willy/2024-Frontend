@@ -37,7 +37,9 @@ export async function fetchPostByNumber(props: fetchPostByNumberProps) {
     body: response.body,
     comments: response.comments,
     state: response.state,
-    created_at: new Date(response.created_at).toLocaleString(),
+    created_at: new Date(response.created_at).toLocaleString("zh-TW", {
+      timeZone: "Asia/Taipei",
+    }),
     user: response.user,
   };
 
