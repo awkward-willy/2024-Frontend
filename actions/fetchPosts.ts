@@ -48,6 +48,7 @@ export async function fetchPosts(props?: fetchPostsProps) {
       comments: data.comments,
       state: data.state,
       created_at: new Date(data.created_at).toLocaleString(),
+      updated_at: new Date(data.updated_at ?? new Date()),
       user: data.user,
     };
   });

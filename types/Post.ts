@@ -13,5 +13,6 @@ export interface Post {
   comments: number;
   state: string;
   created_at: string;
+  updated_at?: string;
   user: PostUser;
 }

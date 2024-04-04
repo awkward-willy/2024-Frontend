@@ -11,6 +11,14 @@ export default auth((req) => {
   const isAuthenticated = !!req.auth;
   const isPublicRoute = PUBLIC_ROUTES.includes(nextUrl.pathname);
 
+  // robots.txt & sitemap.xml
+  if (
+    nextUrl.pathname === "/robots.txt" ||
+    nextUrl.pathname === "/sitemap.xml"
+  ) {
+    return;
+  }
+
   if (isPublicRoute && isAuthenticated) {
     return Response.redirect(new URL(AUTH_REDIRECT, nextUrl));
   }

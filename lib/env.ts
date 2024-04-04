@@ -7,6 +7,7 @@ const envSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(1),
   AUTH_SECRET: z.string().min(1),
   AUTH_URL: z.string().url(),
+  NEXT_PUBLIC_BASE_URL: z.string().url(),
 });
 
 let env: z.infer<typeof envSchema> = {
@@ -16,6 +17,7 @@ let env: z.infer<typeof envSchema> = {
   GITHUB_CLIENT_SECRET: "",
   AUTH_SECRET: "",
   AUTH_URL: "",
+  NEXT_PUBLIC_BASE_URL: "",
 };
 
 try {
