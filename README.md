@@ -16,15 +16,15 @@ This project is a frontend intern homework for Dcard 2024, which implements Dani
 ## How to use
 
 ### Try out online
-<!-- TO BE ADDED -->
+- The application is deployed on Vercel, you can try it out [here](https://dcard-2024-frontend-intern.vercel.app/)
 
 ### Run locally
 1. Make sure `Node.js`, `git`, `npm` or similar tools are installed.
 
 2. Clone the repository and navigate to the project directory
 ```bash
-git clone TODO
-cd dcard-2024
+git clone https://github.com/awkward-willy/Dcard-2024-Frontend-Intern.git
+cd Dcard-2024-Frontend-Intern
 ```
 
 3. Install dependencies
@@ -41,6 +41,7 @@ GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 AUTH_SECRET=
 AUTH_URL=
+NEXT_PUBLIC_BASE_URL=
 ```
 - Explanation to the environment variables:
     - `GITHUB_ADMIN_NAME` - The GitHub userid of the repository owner (E.g. `awkward-willy`)<br>Note1: please make sure to put the userid not the display name<br>Note2: the name should be the owner of the repository where the posts will be stored
@@ -60,6 +61,10 @@ AUTH_URL=
         ```
 
     - `AUTH_URL` - The URL of the server where the app is hosted
+        - If for local development, set it to `http://localhost:3000/api/auth`
+        - If for production, change `http://localhost:3000` to your production URL
+
+    - `NEXT_PUBLIC_BASE_URL` - The base URL of the server where the app is hosted
         - If for local development, set it to `http://localhost:3000`
         - If for production, change `http://localhost:3000` to your production URL
 
@@ -80,7 +85,7 @@ npm run start
     - Set `Homepage URL` to `http://localhost:3000`
     - Set `Authorization callback URL` to `http://localhost:3000/api/auth/callback/github`
 - If for production
-    - Change `http://localhost:3000` to your production URL
+    - Change the above two `http://localhost:3000` to your production URL
 
 2. Set up environment variables
 - Copy the `Client ID` and `Client Secret` from the OAuth App you created and paste them in the `.env.local` file
@@ -92,9 +97,21 @@ npm run start
 - **shadcn/ui** - UI component library
 - **Zustand** - Global state management for certain components (e.g. CommentForm and InfiniteScrollComment)
 - **Zod** - For form and Environment variable validation and type safety.
+- **remark** - For markdown parsing
+- **react-intersection-observer** - For infinite scrolling
 
-## Architecture and Explanation
-<!-- TO BE ADDED -->
+## Architecture
+- Routes
+    - `/` - Home page
+    - `/auth` - Show all posts list to logged-in users
+    - `/auth/post/create` - Create a new post (only for admin)
+    - `/auth/post/[number]` - Show a single post and its comments
+    - `/auth/post/[number]/edit` - Edit a specific post (only for admin)
+    - `/api/auth/[...nextauth]` - auth.js API routes
+
+- Middleware
+    - if the user is not logged in, they cannot access the `/auth` and `/auth/post/*` routes
+    - if the user is logged in, they cannot access the `/` route
 
 ## Homework Requirements
 - [x] Use React.js or a framework based on it, such as Next.js
@@ -117,7 +134,7 @@ npm run start
 - [x] Use TypeScript
 - [x] Use Next.js + App Router
 - [X] Adjust Web Vitals score
-    - Basic optimization is implemented
+    - Basic optimization, sitemap, and robots.txt are implemented
 - [x] Handle errors and exceptions (Error Handling)
     - Basic error handling is implemented<br>E.g. when users try to access a post that does not exist or deleted, the user will be redirected to the not-found page
-- [ ] Deploy to an online environment
+- [X] Deploy to an online environment (Vercel)
